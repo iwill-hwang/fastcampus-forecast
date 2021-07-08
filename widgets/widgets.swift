@@ -89,7 +89,7 @@ struct widgetsEntryView : View {
         VStack {
             Spacer()
             
-            entry.data!.sky.image.resizable().frame(width: 64, height: 64)
+            entry.data?.sky.image.resizable().frame(width: 64, height: 64)
             
             
             Spacer().frame(height: 10)
