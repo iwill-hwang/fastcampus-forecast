@@ -19,6 +19,8 @@
 		D844D7D82668B35500B2B628 /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844D7D72668B35500B2B628 /* WeatherResponse.swift */; };
 		D844D7DA2668B4AB00B2B628 /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844D7D92668B4AB00B2B628 /* ModelTests.swift */; };
 		D844D7DB2668B4B000B2B628 /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844D7D72668B35500B2B628 /* WeatherResponse.swift */; };
+		D8D47F2D2697198A00358448 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8D47F2C2697198A00358448 /* Images.xcassets */; };
+		D8D47F2E269719AE00358448 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8D47F2C2697198A00358448 /* Images.xcassets */; };
 		D8E5E107266A540F00871B4C /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E5E106266A540F00871B4C /* Forecast.swift */; };
 		D8E5E108266A540F00871B4C /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E5E106266A540F00871B4C /* Forecast.swift */; };
 		D8E5E110266A756E00871B4C /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E5E10F266A756E00871B4C /* WidgetKit.framework */; };
@@ -89,6 +91,7 @@
 		D844D7CA2668B33300B2B628 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D844D7D72668B35500B2B628 /* WeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResponse.swift; sourceTree = "<group>"; };
 		D844D7D92668B4AB00B2B628 /* ModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
+		D8D47F2C2697198A00358448 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D8E5E106266A540F00871B4C /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 		D8E5E10D266A756E00871B4C /* widgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = widgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8E5E10F266A756E00871B4C /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -168,6 +171,7 @@
 				D844D7AF2668B33300B2B628 /* Assets.xcassets */,
 				D844D7B12668B33300B2B628 /* LaunchScreen.storyboard */,
 				D844D7AC2668B33100B2B628 /* Main.storyboard */,
+				D8D47F2C2697198A00358448 /* Images.xcassets */,
 			);
 			path = Forecast;
 			sourceTree = "<group>";
@@ -347,6 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D844D7B32668B33300B2B628 /* LaunchScreen.storyboard in Resources */,
+				D8D47F2D2697198A00358448 /* Images.xcassets in Resources */,
 				D844D7B02668B33300B2B628 /* Assets.xcassets in Resources */,
 				D844D7AE2668B33100B2B628 /* Main.storyboard in Resources */,
 			);
@@ -371,6 +376,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8E5E118266A756F00871B4C /* Assets.xcassets in Resources */,
+				D8D47F2E269719AE00358448 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

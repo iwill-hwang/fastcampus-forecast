@@ -55,16 +55,16 @@ extension Double{
 }
 
 extension Sky {
-    var emoji: String {
+    var image: Image {
         switch self {
         case .sunny:
-            return "☀️"
+            return Image("clear")
         case .cloudy:
-            return "☁️"
+            return Image("cloudy")
         case .rainy:
-            return "🌧"
+            return Image("rain")
         case .snow:
-            return "❄️"
+            return Image("snow")
         }
     }
 }
@@ -89,12 +89,14 @@ struct widgetsEntryView : View {
         VStack {
             Spacer()
             
-            Text(entry.data?.sky.emoji ?? "").font(.system(size: 50, weight: .bold))
+            entry.data!.sky.image.resizable().frame(width: 64, height: 64)
             
-            Spacer()
+            
+            Spacer().frame(height: 10)
             
             HStack {
-                Text(temperature).font(.title).fontWeight(.bold)
+                Spacer().frame(width: 19)
+                Text(temperature).font(.title).fontWeight(.medium)
                 Spacer().frame(width: 0)
                 Text("℃").fontWeight(.bold).padding(.bottom, 10)
             }
