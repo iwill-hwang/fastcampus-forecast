@@ -72,7 +72,7 @@ extension Sky {
 struct SimpleEntry: TimelineEntry {
     let date: Date
     let configuration: ConfigurationIntent
-    let data: ForecastData?
+    let data: DailyWeather?
 }
 
 struct widgetsEntryView : View {
@@ -121,7 +121,7 @@ struct widgets: Widget {
 
 struct widgets_Previews: PreviewProvider {
     static var previews: some View {
-        let data = ForecastData(temperature: DayTemperature(current: 10, low: 0, high: 0), sky: .sunny)
+        let data = DailyWeather(temperature: DailyTemperature(current: 10, low: 0, high: 0), sky: .sunny)
         widgetsEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent(), data: data))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }

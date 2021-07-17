@@ -14,13 +14,13 @@ enum Sky {
     case snow
 }
 
-struct DayTemperature {
+struct DailyTemperature {
     let current: Double
     let low: Double
     let high: Double
 }
 
-struct ForecastData {
-    let temperature: DayTemperature
+struct DailyWeather {
+    let temperature: DailyTemperature
     let sky: Sky
 }

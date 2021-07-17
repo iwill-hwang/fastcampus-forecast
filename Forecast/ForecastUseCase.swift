@@ -7,12 +7,12 @@
 
 import Foundation
 
-extension ForecastData {
+extension DailyWeather {
     init(result: APIResult, now: Date) {
         let list = result.response.body.items.list
         
-        let low = list.filter{$0.category == "T3H"}.compactMap{Double($0.value)}.min() ?? 0
-        let high = list.filter{$0.category == "T3H"}.compactMap{Double($0.value)}.max() ?? 0
+        let low = Double(list.first{$0.category == "TMX"}?.value ?? "0")!
+        let high = Double(list.first{$0.category == "TMN"}?.value ?? "0")!
         
         let skyValue = Int(list.first(where: {$0.category == "SKY"})?.value ?? "0")!
         let ptyValue = Int(list.first(where: {$0.category == "PTY"})?.value ?? "0")!
@@ -52,7 +52,7 @@ extension ForecastData {
         }
         
         self.sky = sky
-        self.temperature = DayTemperature(current: Double(current)!, low: low, high: high)
+        self.temperature = DailyTemperature(current: Double(current)!, low: low, high: high)
     }
 }
 
@@ -61,7 +61,7 @@ enum ForecastError: Error {
 }
 
 protocol ForecastUseCase {
-    func requestForecast(at date: Date, completion: @escaping ((Result<ForecastData, Error>) -> Void))
+    func requestForecast(at date: Date, completion: @escaping ((Result<DailyWeather, Error>) -> Void))
 }
 
 
@@ -73,7 +73,7 @@ extension DateFormatter {
 }
 
 final class NetworkForecaseUseCase: ForecastUseCase {
-    func requestForecast(at date: Date, completion: @escaping ((Result<ForecastData, Error>) -> Void)) {
+    func requestForecast(at date: Date, completion: @escaping ((Result<DailyWeather, Error>) -> Void)) {
         let dateFormatter = DateFormatter(format: "yyyyMMdd")
         let timeFormatter = DateFormatter(format: "HHmm")
         
@@ -85,16 +85,14 @@ final class NetworkForecaseUseCase: ForecastUseCase {
             URLQueryItem(name: "base_time", value: "0500"),
             URLQueryItem(name: "nx", value: "1"),
             URLQueryItem(name: "ny", value: "1"),
-            URLQueryItem(name: "numOfRows", value: "55")
+            URLQueryItem(name: "numOfRows", value: "100")
         ]
         
         var request = URLRequest(url: (components?.url)!)
         
         request.httpMethod = "GET"
         
-        print(request.url)
-        
-        URLSession.shared.dataTask(with: request) { data, res, error in
+        URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
                 DispatchQueue.main.async {
                     completion(.failure(error))
@@ -113,8 +111,7 @@ final class NetworkForecaseUseCase: ForecastUseCase {
             do {
                 let result = try JSONDecoder().decode(APIResult.self, from: data)
                 DispatchQueue.main.async {
-                    
-                    completion(.success(ForecastData(result: result, now: Date())))
+                    completion(.success(DailyWeather(result: result, now: Date())))
                 }
             } catch{
                 DispatchQueue.main.async {

@@ -44,7 +44,7 @@ struct Item: Codable {
     let y: Int
     let value: String
     
-    enum CodingKeys : String, CodingKey{
+    enum CodingKeys : String, CodingKey {
         case date           = "baseDate"
         case baseTime       = "baseTime"
         case forecastTime   = "fcstTime"

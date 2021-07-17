@@ -28,8 +28,9 @@ extension Sky {
     }
 }
 
-class ViewController: UIViewController {
+class WeatherViewController: UIViewController {
     private var lastUpdated = Date()
+    private var lastDeactiveTime: Date?
     
     @IBOutlet weak private var scrollView: UIScrollView!
     @IBOutlet weak private var iconView: UIImageView!
@@ -48,10 +49,16 @@ class ViewController: UIViewController {
         self.scrollView.refreshControl = refreshControl
     }
     
-    private func updateForecast(_ data: ForecastData) {
-        self.iconView.image = data.sky.image
-        self.temperatureLabel.text = data.temperature.current.asTemperature()
-        self.lowHighTemperatureLabel.text = "최저: \(data.temperature.low.asTemperature()) / 최대 \(data.temperature.high.asTemperature())"
+    private func updateForecast(_ data: DailyWeather?) {
+        if let data = data {
+            self.iconView.image = data.sky.image
+            self.temperatureLabel.text = data.temperature.current.asTemperature()
+            self.lowHighTemperatureLabel.text = "최저: \(data.temperature.low.asTemperature()) / 최대 \(data.temperature.high.asTemperature())"
+        } else {
+            self.iconView.image = nil
+            self.temperatureLabel.text = "-"
+            self.lowHighTemperatureLabel.text = "최저: - / 최대 -"
+        }
     }
     
     @objc private func requestForecast() {
@@ -61,6 +68,7 @@ class ViewController: UIViewController {
                 self?.updateForecast(data)
             case let .failure(error):
                 print(error)
+                self?.updateForecast(nil)
             }
             self?.scrollView.refreshControl?.endRefreshing()
         }
