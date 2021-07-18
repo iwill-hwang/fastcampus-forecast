@@ -31,7 +31,7 @@ struct Provider: IntentTimelineProvider {
         var entries: [SimpleEntry] = []
 
         NetworkForecaseUseCase().requestForecast(at: Date(), completion: { result in
-            let entryDate = Calendar.current.date(byAdding: .minute, value: 40, to: Date())!
+            let entryDate = Calendar.current.date(byAdding: .minute, value: 30, to: Date())!
             
             switch result {
             case let .success(data):

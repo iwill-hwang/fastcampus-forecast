@@ -39,6 +39,10 @@ class WeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.iconView.image = nil
+        self.temperatureLabel.text = nil
+        self.lowHighTemperatureLabel.text = nil
+        
         self.setupRefreshControl()
         self.requestForecast()
     }
