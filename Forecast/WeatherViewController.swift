@@ -74,6 +74,7 @@ class WeatherViewController: UIViewController {
                 print(error)
                 self?.updateForecast(nil)
             }
+            
             self?.scrollView.refreshControl?.endRefreshing()
         }
     }

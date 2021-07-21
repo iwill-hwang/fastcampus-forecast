@@ -23,6 +23,7 @@ struct Provider: IntentTimelineProvider {
             case let .failure(error):
                 let entry = SimpleEntry(date: Date(), configuration: configuration, data: nil)
                 completion(entry)
+                print(error)
             }
         })
     }
