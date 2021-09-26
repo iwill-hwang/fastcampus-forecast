@@ -19,12 +19,18 @@ extension DateFormatter {
 }
 
 final class NetworkForecaseUseCase: ForecastUseCase {
+    private var serviceKey = ""
+    
     func requestForecast(at date: Date, completion: @escaping ((Result<DailyWeather, Error>) -> Void)) {
         let dateFormatter = DateFormatter(format: "yyyyMMdd")
         var components = URLComponents(string: "http://apis.data.go.kr/1360000/VilageFcstInfoService/getVilageFcst")
         
+        if serviceKey.isEmpty {
+            assertionFailure("공공 데이터 포털(https://www.data.go.kr/) 에 가입한 후 serviceKey 를 입력하셔야 합니다. 자세한 내용은 강의를 참고해주세요!")
+        }
+        
         components?.queryItems = [
-            URLQueryItem(name: "serviceKey", value: "tu7VcXh35d2PIVr4/qm7o/urWRwn5CVV1lpgu4zReoNWQeWY6PA3fU8SEiWQ1ZUmDovuh86X1t7vX/WCRx46zQ=="),
+            URLQueryItem(name: "serviceKey", value: serviceKey),
             URLQueryItem(name: "dataType", value: "json"),
             URLQueryItem(name: "base_date", value: dateFormatter.string(from: date)),
             URLQueryItem(name: "base_time", value: "0200"),
